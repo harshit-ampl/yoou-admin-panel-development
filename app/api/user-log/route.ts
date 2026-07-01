@@ -3,6 +3,8 @@ import UserLog from "@/models/UserLog";
 import { Op, WhereOptions } from "sequelize";
 import { UserLogAttributes } from "@/models/UserLog";
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);

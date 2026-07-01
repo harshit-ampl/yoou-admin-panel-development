@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import sequelize from "@/lib/sequelize";
 import { QueryTypes } from "sequelize";
 import { formatToSQLDateTime } from "@/lib/utils"; 
+
+export const dynamic = 'force-dynamic';
 interface CountResult {
   total: number;
 }

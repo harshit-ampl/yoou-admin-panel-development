@@ -5,6 +5,8 @@ import * as dotenv from "dotenv";
 import { auth } from '@/lib/auth';
 import { S3Client, PutObjectCommand, HeadObjectCommand } from "@aws-sdk/client-s3";
 import UserLog from "@/models/UserLog";
+
+export const dynamic = 'force-dynamic';
 dotenv.config();
 
 const pool = new Pool({

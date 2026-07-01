@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import  MasterRole  from "@/models/MasterRole";
 import { Op } from "sequelize";
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(req: NextRequest) {
   const { role, role_code } = await req.json();
   if (!role || !role_code)

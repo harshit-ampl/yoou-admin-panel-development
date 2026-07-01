@@ -4,6 +4,8 @@ import { Pool } from "pg";
 import { S3Client, GetObjectCommand, HeadObjectCommand } from "@aws-sdk/client-s3";
 import * as dotenv from "dotenv";
 import { parse } from "csv-parse/sync";
+
+export const dynamic = 'force-dynamic';
 dotenv.config();
 
 const pool = new Pool({

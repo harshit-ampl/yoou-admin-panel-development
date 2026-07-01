@@ -4,6 +4,8 @@ import { auth } from "@/lib/auth";
 import getPool from "@/lib/db";
 import UserLog from "@/models/UserLog";
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(req: NextRequest) {
   try {
     const session = await auth(req);

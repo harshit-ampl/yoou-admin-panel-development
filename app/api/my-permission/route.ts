@@ -50,6 +50,8 @@ import Module from '@/models/Module';
 import  MasterRole  from '@/models/MasterRole';
 import { auth } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 const FULL_ACTIONS = ['Add', 'Edit', 'View', 'Delete'] as const;
 type Action = (typeof FULL_ACTIONS)[number];
 

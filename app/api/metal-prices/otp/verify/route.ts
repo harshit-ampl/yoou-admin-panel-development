@@ -4,6 +4,8 @@ import { transporter } from "@/lib/mailer";
 import store, { MAX_ATTEMPTS, pruneExpired } from "@/lib/metalOtpStore";
 import User from "@/models/Users";
 
+export const dynamic = 'force-dynamic';
+
 const OTP_TO   = process.env.METAL_OTP_TO ?? "rimadevi.prasad@amplicomm.com";
 const OTP_FROM = process.env.EMAIL_USER   ?? "alertspng@amplicomm.com";
 

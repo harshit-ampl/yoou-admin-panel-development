@@ -5,6 +5,8 @@ import store, { OTP_TTL_MS, pruneExpired } from "@/lib/metalOtpStore";
 import { rateLimit } from "@/lib/rateLimiter";
 import crypto from "crypto";
 
+export const dynamic = 'force-dynamic';
+
 const OTP_TO   = process.env.METAL_OTP_TO   ?? "rimadevi.prasad@amplicomm.com";
 const OTP_FROM = process.env.EMAIL_USER      ?? "alertspng@amplicomm.com";
 

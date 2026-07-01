@@ -4,6 +4,8 @@ import Module from '@/models/Module';
 import RolePermission from '@/models/RolePermission';
 import  MasterRole  from '@/models/MasterRole';
 
+export const dynamic = 'force-dynamic';
+
 /* ---------- GET ?role_id=1 ----------------------------------------- */
 export async function GET(req: NextRequest) {
   const id = new URL(req.url).searchParams.get('role_id');

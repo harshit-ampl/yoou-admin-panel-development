@@ -5,6 +5,8 @@ import { Optional } from "sequelize";
 import UserLog from "@/models/UserLog";
 import { auth } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 interface StonePrices extends Optional<StonePriceAttributes, "id"> {}
 
 export async function GET(req: NextRequest, res: NextResponse) {

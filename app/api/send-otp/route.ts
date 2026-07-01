@@ -5,6 +5,8 @@ import https from "https";
 import Otp from "@/models/Otp";
 import moment from 'moment-timezone';
 
+export const dynamic = 'force-dynamic';
+
 const httpsAgent = new https.Agent({
   rejectUnauthorized: false,
 });

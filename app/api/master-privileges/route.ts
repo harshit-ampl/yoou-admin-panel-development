@@ -3,6 +3,8 @@ import { MasterPrivilege } from "@/models";
 import { NextRequest, NextResponse } from "next/server";
 import { Op } from 'sequelize';
 
+export const dynamic = 'force-dynamic';
+
 // GET /api/master-privileges - Get all master privileges with optional filtering
 // export const GET = async (req: NextRequest) => {
 //   try {

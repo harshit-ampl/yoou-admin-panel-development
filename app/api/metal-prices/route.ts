@@ -5,6 +5,8 @@ import { Optional } from "sequelize";
 import UserLog from "@/models/UserLog";
 import { auth } from '@/lib/auth';
 
+export const dynamic = 'force-dynamic';
+
 interface MetalPrices extends Optional<MetalPriceAttributes, "id"> {}
 
 const RATE_FIELDS = ["sale_rate", "purity", "purity_percentage", "urd_rate", "exchange_rate"] as const;

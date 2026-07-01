@@ -3,6 +3,8 @@ import { Pool } from "pg";
 import * as dotenv from "dotenv";
 import { stringify } from "csv-stringify/sync";
 
+export const dynamic = 'force-dynamic';
+
 dotenv.config();
 
 const pool = new Pool({

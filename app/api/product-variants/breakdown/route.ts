@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import sequelize from "@/lib/sequelize";
 
+export const dynamic = 'force-dynamic';
+
 // ── helpers ────────────────────────────────────────────────────────────────
 
 function parseAmount(s: string | null | undefined): number {

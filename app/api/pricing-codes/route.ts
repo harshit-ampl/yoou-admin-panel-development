@@ -5,6 +5,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { Optional } from "sequelize";
 import UserLog from "@/models/UserLog";
 import { auth } from '@/lib/auth';
+
+export const dynamic = 'force-dynamic';
 interface PricingCodes extends Optional<MakingChargeAttributes, "id"> {}
 // interface MakingChargeChangesInput extends Optional<MakingChargeChangesInputAttr, "name"> {}
 

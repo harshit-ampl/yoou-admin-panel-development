@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import * as dotenv from "dotenv";
 
+export const dynamic = 'force-dynamic';
+
 dotenv.config();
 
 export async function POST(req: NextRequest) {

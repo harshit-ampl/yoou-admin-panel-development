@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { Pool } from "pg";
 import * as dotenv from "dotenv";
+
+export const dynamic = 'force-dynamic';
 dotenv.config();
 
 const pool = new Pool({

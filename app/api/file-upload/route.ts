@@ -2,6 +2,8 @@
 import { NextRequest, NextResponse } from "next/server";
 // import { Op } from "sequelize";
 import sequelize from "@/lib/sequelize";
+
+export const dynamic = 'force-dynamic';
 // import FileUpload from "@/models/FileUpload";   
 
 export async function GET(req: NextRequest) {

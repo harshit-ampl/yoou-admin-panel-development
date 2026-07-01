@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { Op } from "sequelize";
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: NextRequest) {
   console.log("Received GET request for /api/error-log");
 

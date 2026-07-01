@@ -5,6 +5,8 @@ import User from "@/models/Users";
 import { Op } from "sequelize";
 import { rateLimit } from "@/lib/rateLimiter";
 
+export const dynamic = 'force-dynamic';
+
 const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key";
 
 function getIp(req: NextRequest): string {

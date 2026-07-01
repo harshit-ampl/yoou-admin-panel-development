@@ -3,6 +3,8 @@ import UserLog from "@/models/UserLog";
 import { QueryTypes } from "sequelize";
 import sequelize from "@/lib/sequelize";
 
+export const dynamic = 'force-dynamic';
+
 /** GET /api/user-log/filters — returns distinct modules, actions, and users for filter dropdowns */
 export async function GET() {
   try {

@@ -5,6 +5,8 @@ import { auth } from '@/lib/auth';
 import UserLog from "@/models/UserLog";
 import { UserAttributes } from "@/types/Users";
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(req: NextRequest) {
   try {
     const session = await auth(req);

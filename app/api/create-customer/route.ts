@@ -4,6 +4,8 @@ import { Pool } from "pg";
 import axios from "axios";
 import https from "https";
 
+export const dynamic = 'force-dynamic';
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
