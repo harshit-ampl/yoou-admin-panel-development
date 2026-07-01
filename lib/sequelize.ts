@@ -1,7 +1,11 @@
 import { Sequelize } from 'sequelize';
 import pg from 'pg';
 
-const sequelize = new Sequelize(process.env.DATABASE_URL as string, {
+if (!process.env.DATABASE_URL) {
+  console.warn('DATABASE_URL is not set; database queries will fail until it is configured.');
+}
+
+const sequelize = new Sequelize(process.env.DATABASE_URL || 'postgres://invalid', {
   dialect: 'postgres',
   logging: false, // Disable logging in production
   dialectModule: pg,
