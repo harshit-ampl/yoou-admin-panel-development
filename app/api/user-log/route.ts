@@ -2,10 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import UserLog from "@/models/UserLog";
 import { Op, WhereOptions } from "sequelize";
 import { UserLogAttributes } from "@/models/UserLog";
+import { requireTokenCookie } from "@/lib/auth";
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
+  const authError = requireTokenCookie(req);
+  if (authError) return authError;
   try {
     const { searchParams } = new URL(req.url);
 

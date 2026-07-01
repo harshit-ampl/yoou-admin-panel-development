@@ -3,11 +3,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import Module from '@/models/Module';
 import RolePermission from '@/models/RolePermission';
 import  MasterRole  from '@/models/MasterRole';
+import { requireTokenCookie } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 
 /* ---------- GET ?role_id=1 ----------------------------------------- */
 export async function GET(req: NextRequest) {
+  const authError = requireTokenCookie(req);
+  if (authError) return authError;
   const id = new URL(req.url).searchParams.get('role_id');
   if (!id) return NextResponse.json({ error: 'role_id required' }, { status: 400 });
 
@@ -37,6 +40,8 @@ export async function GET(req: NextRequest) {
 
 /* ---------- PUT ?role_id=1 ----------------------------------------- */
 export async function PUT(req: NextRequest) {
+  const authError = requireTokenCookie(req);
+  if (authError) return authError;
   const id = new URL(req.url).searchParams.get('role_id');
   if (!id) return NextResponse.json({ error: 'role_id required' }, { status: 400 });
 

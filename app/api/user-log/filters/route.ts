@@ -1,12 +1,15 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import UserLog from "@/models/UserLog";
 import { QueryTypes } from "sequelize";
 import sequelize from "@/lib/sequelize";
+import { requireTokenCookie } from "@/lib/auth";
 
 export const dynamic = 'force-dynamic';
 
 /** GET /api/user-log/filters — returns distinct modules, actions, and users for filter dropdowns */
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const authError = requireTokenCookie(req);
+  if (authError) return authError;
   try {
     const [modules, actions, users] = await Promise.all([
       sequelize.query<{ module: string }>(

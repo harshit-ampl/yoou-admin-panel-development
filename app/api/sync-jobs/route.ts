@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import getPool from '@/lib/db';
+import { requireTokenCookie } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(request: NextRequest) {
+   const authError = requireTokenCookie(request);
+   if (authError) return authError;
    try {
       const { searchParams } = new URL(request.url);
       const page   = parseInt(searchParams.get('page')  || '1',  10);

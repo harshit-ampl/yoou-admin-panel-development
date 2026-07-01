@@ -1,8 +1,18 @@
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 import User from '@/models/Users'; // Mongoose model
 
 const JWT_SECRET = process.env.JWT_SECRET!;
+
+// Matches the cookie-presence check previously done in middleware.ts for
+// routes that don't do their own JWT verification via auth().
+export function requireTokenCookie(req: NextRequest): NextResponse | null {
+  const token = req.cookies.get('token')?.value;
+  if (!token) {
+    return NextResponse.json({ error: 'Unauthenticated' }, { status: 401 });
+  }
+  return null;
+}
 
 type JwtPayload = {
   id: string;

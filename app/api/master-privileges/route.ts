@@ -2,6 +2,7 @@
 import { MasterPrivilege } from "@/models";
 import { NextRequest, NextResponse } from "next/server";
 import { Op } from 'sequelize';
+import { requireTokenCookie } from "@/lib/auth";
 
 export const dynamic = 'force-dynamic';
 
@@ -94,6 +95,8 @@ export const dynamic = 'force-dynamic';
 // };
 // POST /api/master-privileges - Create new master privilege
 export const POST = async (req: NextRequest) => {
+  const authError = requireTokenCookie(req);
+  if (authError) return authError;
   try {
     const privilegeData = await req.json();
     
@@ -122,6 +125,8 @@ export const POST = async (req: NextRequest) => {
 
 // PUT /api/master-privileges/[id] - Update master privilege
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+  const authError = requireTokenCookie(req);
+  if (authError) return authError;
   try {
     const { id } = params;
     const updateData = await req.json();
@@ -162,18 +167,20 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
 
 // DELETE /api/master-privileges/[id] - Delete master privilege
 export async function DELETE(req: NextRequest, { params }: { params: { id: string } })  {
+  const authError = requireTokenCookie(req);
+  if (authError) return authError;
   try {
     const { id } = params;
-    
+
     const privilege = await MasterPrivilege.findByPk(id);
-    
+
     if (!privilege) {
       return NextResponse.json({
         success: false,
         message: 'Master privilege not found',
       }, { status: 404 });
     }
-    
+
     await privilege.destroy();
     
     return NextResponse.json({
@@ -192,6 +199,8 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
 
 // GET /api/master-privileges/sections - Get unique sections
 export const GET = async (req: NextRequest) => {
+  const authError = requireTokenCookie(req);
+  if (authError) return authError;
   try {
     const sections = await MasterPrivilege.findAll({
       attributes: ['section', 'section_code'],

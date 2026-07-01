@@ -1,9 +1,12 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import getPool from "@/lib/db";
+import { requireTokenCookie } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const authError = requireTokenCookie(req);
+  if (authError) return authError;
   try {
     const pool = getPool();
     const [syncResult, uploadResult] = await Promise.all([
@@ -20,7 +23,9 @@ export async function GET() {
   }
 }
 
-export async function DELETE() {
+export async function DELETE(req: NextRequest) {
+  const authError = requireTokenCookie(req);
+  if (authError) return authError;
   try {
     const pool = getPool();
     await Promise.all([

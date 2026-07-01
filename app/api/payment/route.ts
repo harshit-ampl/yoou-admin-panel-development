@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import sequelize from "@/lib/sequelize";
 import { QueryTypes } from "sequelize";
-import { formatToSQLDateTime } from "@/lib/utils"; 
+import { formatToSQLDateTime } from "@/lib/utils";
+import { requireTokenCookie } from "@/lib/auth";
 
 export const dynamic = 'force-dynamic';
 interface CountResult {
@@ -9,6 +10,8 @@ interface CountResult {
 }
 
 export async function GET(req: NextRequest) {
+  const authError = requireTokenCookie(req);
+  if (authError) return authError;
   try {
     const { searchParams } = new URL(req.url);
     

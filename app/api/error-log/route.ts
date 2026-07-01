@@ -2,10 +2,13 @@ import ErrorLog from "@/models/ErrorLog";
 import { NextRequest, NextResponse } from "next/server";
 
 import { Op } from "sequelize";
+import { requireTokenCookie } from "@/lib/auth";
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
+  const authError = requireTokenCookie(req);
+  if (authError) return authError;
   console.log("Received GET request for /api/error-log");
 
   try {

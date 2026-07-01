@@ -1,8 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { requireTokenCookie } from "@/lib/auth";
 
 export const dynamic = 'force-dynamic';
 
-export async function POST() {
+export async function POST(req: NextRequest) {
+  const authError = requireTokenCookie(req);
+  if (authError) return authError;
   const res = NextResponse.json({ ok: true });
   res.cookies.set("token", "", {
     httpOnly: true,

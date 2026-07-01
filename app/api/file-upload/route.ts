@@ -2,11 +2,14 @@
 import { NextRequest, NextResponse } from "next/server";
 // import { Op } from "sequelize";
 import sequelize from "@/lib/sequelize";
+import { requireTokenCookie } from "@/lib/auth";
 
 export const dynamic = 'force-dynamic';
-// import FileUpload from "@/models/FileUpload";   
+// import FileUpload from "@/models/FileUpload";
 
 export async function GET(req: NextRequest) {
+  const authError = requireTokenCookie(req);
+  if (authError) return authError;
   try {
     /* ---------- 1. Parse query-string params ---------- */
     const { searchParams } = new URL(req.url);

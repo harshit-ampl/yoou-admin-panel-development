@@ -2,10 +2,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import  MasterRole  from "@/models/MasterRole";
 import { Op } from "sequelize";
+import { requireTokenCookie } from "@/lib/auth";
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(req: NextRequest) {
+  const authError = requireTokenCookie(req);
+  if (authError) return authError;
   const { role, role_code } = await req.json();
   if (!role || !role_code)
     return NextResponse.json({ error: 'role & role_code required' }, { status: 400 });
@@ -22,6 +25,8 @@ export async function POST(req: NextRequest) {
 
 // GET handler async func
 export async function GET(req: NextRequest) {
+  const authError = requireTokenCookie(req);
+  if (authError) return authError;
   try {
     const { searchParams } = new URL(req.url);
     const status = searchParams.get('status');

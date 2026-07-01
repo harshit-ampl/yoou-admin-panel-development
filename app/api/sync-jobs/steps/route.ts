@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import getPool from "@/lib/db";
+import { requireTokenCookie } from "@/lib/auth";
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
+  const authError = requireTokenCookie(req);
+  if (authError) return authError;
   const jobId = req.nextUrl.searchParams.get("jobId");
   if (!jobId || isNaN(Number(jobId))) {
     return NextResponse.json({ error: "Invalid jobId" }, { status: 400 });

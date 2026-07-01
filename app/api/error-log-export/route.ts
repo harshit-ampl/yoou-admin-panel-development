@@ -1,7 +1,8 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { Pool } from "pg";
 import * as dotenv from "dotenv";
 import { stringify } from "csv-stringify/sync";
+import { requireTokenCookie } from "@/lib/auth";
 
 export const dynamic = 'force-dynamic';
 
@@ -11,7 +12,9 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
+  const authError = requireTokenCookie(req);
+  if (authError) return authError;
   try {
     const { searchParams } = new URL(req.url);
     const search = searchParams.get("search")?.trim();
