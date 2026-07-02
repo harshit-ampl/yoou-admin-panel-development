@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CircleDollarSign, Gem, RefreshCw, Clock, TrendingUp } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState, use } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { usePermissions } from "@/hooks/usePermissions";
 import { useRouter } from "next/navigation";
@@ -61,9 +61,9 @@ const METAL_ROW_BG: Record<string, string> = {
 export default function Home({
   searchParams,
 }: {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+  searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const params = use(searchParams);
+  const params = searchParams;
   const { user, clearUser } = useAuth();
   const { ready, can } = usePermissions();
   const router = useRouter();
